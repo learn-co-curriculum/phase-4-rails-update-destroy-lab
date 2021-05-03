@@ -87,14 +87,14 @@ RSpec.describe "Plants", type: :request do
     end
 
     it 'returns the plant data' do
-      patch "/plants/#{plant.id}", params: { is_in_stock: true }
+      patch "/plants/#{plant.id}", params: { is_in_stock: false }
 
       expect(response.body).to include_json({
         id: a_kind_of(Integer),
         name: 'Aloe',
         image: './images/aloe.jpg',
-        price: 15.99,
-        is_in_stock: true
+        price: '15.99',
+        is_in_stock: false
       })
     end
   end
