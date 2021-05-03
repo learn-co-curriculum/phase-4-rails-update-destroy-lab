@@ -1,10 +1,8 @@
-import { useState } from "react";
-
 function PlantCard({ plant, onDeletePlant, onUpdatePlant }) {
-  const { name, image, price, is_in_stock: isInStock } = plant;
+  const { id, name, image, price, is_in_stock: isInStock } = plant;
 
   function handleDeleteClick() {
-    fetch(`http://localhost:6001/plants/${id}`, {
+    fetch(`http://localhost:3000/plants/${id}`, {
       method: "DELETE",
     });
 
@@ -12,12 +10,12 @@ function PlantCard({ plant, onDeletePlant, onUpdatePlant }) {
   }
 
   function handleIsInStockClick() {
-    fetch(`http://localhost:6001/plants/${id}`, {
+    fetch(`http://localhost:3000/plants/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ is_in_stock: isInStock }),
+      body: JSON.stringify({ is_in_stock: !isInStock }),
     })
       .then((r) => r.json())
       .then((updatedPlant) => {
