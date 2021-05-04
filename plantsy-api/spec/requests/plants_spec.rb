@@ -24,11 +24,8 @@ RSpec.describe "Plants", type: :request do
       Plant.create(name: 'ZZ Plant', image: './images/zz-plant.jpg', price: 25.98, is_in_stock: true)
     end
   
-    let!(:first_plant) { Plant.first }
-    let!(:second_plant) { Plant.second }
-
     it 'returns the first plant' do
-      get "/plants/#{first_plant.id}"
+      get "/plants/#{Plant.first.id}"
 
       expect(response.body).to include_json({
         id: a_kind_of(Integer),
@@ -40,7 +37,7 @@ RSpec.describe "Plants", type: :request do
     end
 
     it 'returns the second plant' do
-      get "/plants/#{second_plant.id}"
+      get "/plants/#{Plant.second.id}"
 
       expect(response.body).to include_json({
         id: a_kind_of(Integer),
@@ -78,15 +75,17 @@ RSpec.describe "Plants", type: :request do
   end
 
   describe "PATCH /plants/:id" do
-    let!(:plant) { Plant.create(name: 'Aloe', image: './images/aloe.jpg', price: 15.99, is_in_stock: true) }
-
     it 'updates the student with the matching id' do
+      plant =  Plant.create(name: 'Aloe', image: './images/aloe.jpg', price: 15.99, is_in_stock: true)
+
       patch "/plants/#{plant.id}", params: { is_in_stock: false }
       
       expect(plant.reload.is_in_stock).to eq(false)
     end
 
     it 'returns the plant data' do
+      plant =  Plant.create(name: 'Aloe', image: './images/aloe.jpg', price: 15.99, is_in_stock: true)
+
       patch "/plants/#{plant.id}", params: { is_in_stock: false }
 
       expect(response.body).to include_json({
@@ -100,12 +99,11 @@ RSpec.describe "Plants", type: :request do
   end
 
   describe 'DELETE /plants/:id' do
-    let!(:plant) { Plant.create(name: 'Aloe', image: './images/aloe.jpg', price: 15.99, is_in_stock: true) }
-    
     it 'deletes the plant with the matching id' do
+      plant =  Plant.create(name: 'Aloe', image: './images/aloe.jpg', price: 15.99, is_in_stock: true)
+
       expect { delete "/plants/#{plant.id}" }.to change(Plant, :count).from(1).to(0)
     end
-
   end
 
 end
