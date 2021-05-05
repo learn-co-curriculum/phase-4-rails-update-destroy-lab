@@ -1,4 +1,4 @@
-# Rails Create, Index, and Show Lab
+# Rails Update and Destroy Lab
 
 ## Learning Goals
 
