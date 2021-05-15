@@ -7,36 +7,33 @@
 ## Introduction
 
 In this lab, we'll continue building an API for the plant store! The code for
-this is separated into two folders:
-
-- `plantsy-api`: our Rails API server
-- `plantsy-frontend`: our React frontend
+our React frontend application in the `client` directory.
 
 The code for the frontend application is done. Your job is to create the Rails
 API so that the `fetch` requests on the frontend work successfully.
 
 ## Instructions
 
-To set up and run the frontend, `cd` into the `plantsy-frontend` directory and
-run:
+To set up the frontend and backend dependencies, from the root directory, run:
 
 ```sh
-npm install
-npm start
-```
-
-This will run your frontend in the browser on port 4000.
-
-To set up your backend, in a new terminal, `cd` into the `plantsy-api`
-directory and run:
-
-```sh
+npm install --prefix client
 bundle install
+rails db:migrate db:seed
 ```
 
-You can run `learn test` to test the code for your deliverables as you go.
-You're also encouraged to use Postman, and to test your backend routes by
-interacting with the API from your frontend.
+Then, run both the Rails application and the React application together by
+running:
+
+```sh
+rails start
+```
+
+This will run a Rake task that will start both the Rails app and the React app.
+You must use `rails start` (not `rails s`) to start both applications together!
+
+- React: [http://localhost:4000](http://localhost:4000)
+- Rails: [http://localhost:3000](http://localhost:3000)
 
 ## Deliverables
 
