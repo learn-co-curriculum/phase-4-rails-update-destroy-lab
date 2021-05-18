@@ -7,10 +7,9 @@
 ## Introduction
 
 In this lab, we'll continue building an API for the plant store! The code for
-our React frontend application in the `client` directory.
-
-The code for the frontend application is done. Your job is to create the Rails
-API so that the `fetch` requests on the frontend work successfully.
+the frontend React application is done; you can find it in the `client`
+directory. Your job is to create the Rails API so that the `fetch` requests on
+the frontend work successfully.
 
 ## Instructions
 
@@ -39,8 +38,8 @@ You must use `rails start` (not `rails s`) to start both applications together!
 
 ### Routes
 
-Your API should have the following routes, which each returns the appropriate
-JSON data:
+Your API should have the following routes as well as the associated controller
+actions that return the appropriate JSON data:
 
 #### Update Route
 
