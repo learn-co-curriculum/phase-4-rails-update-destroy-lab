@@ -15,17 +15,17 @@ the frontend work successfully.
 
 To set up the frontend and backend dependencies, from the root directory, run:
 
-```sh
-npm install --prefix client
-bundle install
-rails db:migrate db:seed
+```console
+$ npm install --prefix client
+$ bundle install
+$ rails db:migrate db:seed
 ```
 
 Then, run both the Rails application and the React application together by
 running:
 
-```sh
-rails start
+```console
+$ rails start
 ```
 
 This will run a Rake task that will start both the Rails app and the React app.
