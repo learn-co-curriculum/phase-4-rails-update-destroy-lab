@@ -75,7 +75,7 @@ RSpec.describe "Plants", type: :request do
   end
 
   describe "PATCH /plants/:id" do
-    it 'updates the student with the matching id' do
+    it 'updates the plant with the matching id' do
       plant =  Plant.create(name: 'Aloe', image: './images/aloe.jpg', price: 15.99, is_in_stock: true)
 
       patch "/plants/#{plant.id}", params: { is_in_stock: false }
