@@ -24,6 +24,12 @@ class PlantsController < ApplicationController
     render json: plant 
   end
 
+  def destroy 
+    plant = Plant.find_by(id: params[:id])
+    plant.destroy 
+    head :no_content 
+  end
+
   private
 
   def plant_params
