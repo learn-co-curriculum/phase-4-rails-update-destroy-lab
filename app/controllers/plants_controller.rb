@@ -1,4 +1,6 @@
 class PlantsController < ApplicationController
+  rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
+
   # GET /plants
   def index
     plants = Plant.all
@@ -7,40 +9,26 @@ class PlantsController < ApplicationController
 
   # GET /plants/:id
   def show
-    if plant = find_plant
-      render json: plant
-    else
-      render_not_found_response
-    end
+    plant = find_plant
+    render json: plant
   end
 
   # POST /plants
   def create
-    if plant = Plant.create(plant_params)
-      render json: plant, status: :created
-    else
-      render_not_found_response
-    end
+    plant = Plant.create(plant_params)
+    render json: plant, status: :created
   end
 
   def update
     plant = find_plant
-    if plant
-      plant.update(plant_params)
-      render json: plant
-    else
-      render_not_found_response
-    end
+    plant.update(plant_params)
+    render json: plant
   end
 
   def destroy
     plant = find_plant
-    if plant
-      plant.destroy
-      head :no_content
-    else
-      render_not_found_response
-    end
+    plant.destroy
+    head :no_content
   end
 
   private
