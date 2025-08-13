@@ -1,4 +1,14 @@
 #!/usr/bin/env ruby
+
+# Fix for LoggerThreadSafeLevel compatibility with Ruby 3.3+
+if RUBY_VERSION >= "3.3.0"
+  require 'logger'
+  # Ensure Logger::Severity is available before Rails loads
+  unless defined?(Logger::Severity)
+    Logger::Severity = Logger.const_get(:Severity)
+  end
+end
+
 APP_PATH = File.expand_path('../config/application', __dir__)
 require_relative "../config/boot"
 require "rails/commands"
